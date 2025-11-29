@@ -1,0 +1,186 @@
+{% extends "base.html" %} {% block title %}About Us - PhishGuard{% endblock %} {% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 fw-bold text-blue">About Our Email Classification System</h1>
+            <p class="lead text-muted">Understanding how we protect you from phishing threats</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="card-title h3 text-blue mb-3">Our Mission</h2>
+                    <p class="card-text">Our mission is to provide a reliable and user-friendly tool that helps individuals and organizations identify and protect themselves from phishing emails. We believe in creating a safer digital environment through advanced technology
+                        and education.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4 text-center">
+                    <h2 class="card-title h3 text-blue mb-3">Built with Flask</h2>
+                    <p class="card-text">Our application is built using Flask, a lightweight WSGI web application framework in Python. It's designed to make getting started quick and easy, with the ability to scale up to complex applications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-blue text-white py-3">
+                    <h2 class="h3 mb-0">How Our System Works</h2>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="tech-card p-3 text-center h-100" onmouseover="this.classList.add('shadow-sm', 'bg-light')" onmouseout="this.classList.remove('shadow-sm', 'bg-light')">
+                                <i class="bi bi-envelope-exclamation text-blue fs-2 mb-2"></i>
+                                <h4 class="h6 mb-2">Email Input</h4>
+                                <p class="small text-muted">Users submit email content for analysis through our secure interface</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="tech-card p-3 text-center h-100" onmouseover="this.classList.add('shadow-sm', 'bg-light')" onmouseout="this.classList.remove('shadow-sm', 'bg-light')">
+                                <i class="bi bi-cpu text-blue fs-2 mb-2"></i>
+                                <h4 class="h6 mb-2">Processing</h4>
+                                <p class="small text-muted">Our system extracts and analyzes key features from the email content</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="tech-card p-3 text-center h-100" onmouseover="this.classList.add('shadow-sm', 'bg-light')" onmouseout="this.classList.remove('shadow-sm', 'bg-light')">
+                                <i class="bi bi-shield-check text-blue fs-2 mb-2"></i>
+                                <h4 class="h6 mb-2">Classification</h4>
+                                <p class="small text-muted">Machine learning algorithms determine if the email is legitimate or phishing</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="tech-card p-3 text-center h-100" onmouseover="this.classList.add('shadow-sm', 'bg-light')" onmouseout="this.classList.remove('shadow-sm', 'bg-light')">
+                                <i class="bi bi-graph-up text-blue fs-2 mb-2"></i>
+                                <h4 class="h6 mb-2">Results</h4>
+                                <p class="small text-muted">Users receive instant classification results with confidence scores</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-blue text-white py-3">
+                        <h2 class="h3 mb-0">Technical Features</h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <ul class="list-unstyled">
+                            <li class="mb-3 d-flex align-items-center">
+                                <span class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 28px; height: 28px;">
+                                <i class="bi bi-check-lg text-white"></i>
+                            </span>
+                                <div>
+                                    <h5 class="h6 mb-0">Machine Learning</h5>
+                                    <p class="small text-muted mb-0">Advanced algorithms for accurate email classification</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex align-items-center">
+                                <span class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 28px; height: 28px;">
+                                <i class="bi bi-check-lg text-white"></i>
+                            </span>
+                                <div>
+                                    <h5 class="h6 mb-0">Natural Language Processing</h5>
+                                    <p class="small text-muted mb-0">Text analysis to identify suspicious patterns</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex align-items-center">
+                                <span class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 28px; height: 28px;">
+                                <i class="bi bi-check-lg text-white"></i>
+                            </span>
+                                <div>
+                                    <h5 class="h6 mb-0">Secure Authentication</h5>
+                                    <p class="small text-muted mb-0">Protected user accounts and data privacy</p>
+                                </div>
+                            </li>
+                            <li class="mb-3 d-flex align-items-center">
+                                <span class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 28px; height: 28px;">
+                                <i class="bi bi-check-lg text-white"></i>
+                            </span>
+                                <div>
+                                    <h5 class="h6 mb-0">History Tracking</h5>
+                                    <p class="small text-muted mb-0">Complete record of all analyzed emails</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-blue text-white py-3">
+                        <h2 class="h3 mb-0">Technology Stack</h2>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <div class="tech-card p-3 text-center" onmouseover="this.classList.add('shadow-sm', 'bg-light')" onmouseout="this.classList.remove('shadow-sm', 'bg-light')">
+                                    <i class="bi bi-filetype-py text-blue fs-2 mb-2"></i>
+                                    <h4 class="h6 mb-0">Python</h4>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="tech-card p-3 text-center" onmouseover="this.classList.add('shadow-sm', 'bg-light')" onmouseout="this.classList.remove('shadow-sm', 'bg-light')">
+                                    <i class="bi bi-cup-hot text-blue fs-2 mb-2"></i>
+                                    <h4 class="h6 mb-0">Flask</h4>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="tech-card p-3 text-center" onmouseover="this.classList.add('shadow-sm', 'bg-light')" onmouseout="this.classList.remove('shadow-sm', 'bg-light')">
+                                    <i class="bi bi-database text-blue fs-2 mb-2"></i>
+                                    <h4 class="h6 mb-0">SQLite</h4>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="tech-card p-3 text-center" onmouseover="this.classList.add('shadow-sm', 'bg-light')" onmouseout="this.classList.remove('shadow-sm', 'bg-light')">
+                                    <i class="bi bi-braces text-blue fs-2 mb-2"></i>
+                                    <h4 class="h6 mb-0">Bootstrap</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4 text-center">
+                        <h2 class="h3 text-violet mb-4">Ready to try our system?</h2>
+                        <a href="{{ url_for('home') }}" class="btn btn-violet btn-lg px-4 me-2">
+                            <i class="bi bi-shield-check me-2"></i>Get Started
+                        </a>
+                        <a href="{{ url_for('contact') }}" class="btn btn-outline-violet btn-lg px-4">
+                            <i class="bi bi-chat-dots me-2"></i>Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .feature-card,
+        .tech-card {
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            height: 100%;
+        }
+        
+        .feature-card:hover,
+        .tech-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+    {% endblock %}

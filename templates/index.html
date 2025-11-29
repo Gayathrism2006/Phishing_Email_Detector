@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% block title %}Phishing Email Detection App{% endblock %} {% block content %} {% if not session.get('user') %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <div class="alert alert-warning">
+            <h2><i class="bi bi-exclamation-triangle"></i> Please log in to use the detection tool</h2>
+            <p class="lead">Create an account or log in to access our phishing email detection tool.</p>
+            <div class="mt-4">
+                <a class="btn btn-primary btn-lg me-2" href="{{ url_for('login') }}">Login</a>
+                <a class="btn btn-success btn-lg" href="{{ url_for('signup') }}">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-header bg-primary text-white">
+                <h2 class="text-center m-0"><i class="bi bi-shield-check me-2"></i>Phishing Email Detection</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead text-center mb-4">Enter an email subject or content to check if it's a potential phishing attempt</p>
+                <form method="POST" action="{{ url_for('predict') }}" id="detectionForm">
+                    <div class="mb-3">
+                        <label for="subjectInput" class="form-label">Email Content</label>
+                        <textarea class="form-control" id="subjectInput" name="subject" rows="4" placeholder="Paste email subject or content here (supports multiple languages)" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="translate_option" id="autoTranslate" value="auto" checked>
+                            <label class="form-check-label" for="autoTranslate">Auto-translate non-English content</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="translate_option" id="noTranslate" value="no_translate">
+                            <label class="form-check-label" for="noTranslate">Don't translate</label>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-search me-2"></i>Analyze Email
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+{% if prediction is not none %}
+<div class="mt-3 alert {% if prediction == 'Unsafe' %}alert-danger{% else %}alert-success{% endif %}">
+    <h4 class="alert-heading">Analysis Result</h4>
+    <p>The email is predicted as: <strong>{% if prediction == 'Unsafe' %}<span class="text-danger">SCAM</span>{% else %}<span class="text-success">LEGITIMATE</span>{% endif %}</strong> with {{ confidence }}% confidence</p>
+    {% if trusted_source %}
+    <div class="mt-2 mb-2">
+        <span class="badge bg-success"><i class="bi bi-shield-check me-1"></i>Trusted Source Detected</span>
+        <small class="text-muted ms-2">This email appears to be from a trusted domain.</small>
+    </div>
+    {% endif %}
+    
+    {% if detected_language and detected_language != 'en' %}
+    <hr>
+    <p><strong>Detected Language:</strong> {{ detected_language|upper }}</p>
+    {% if translated_text %}
+    <div class="mt-2">
+        <p><strong>Translation:</strong></p>
+        <div class="card">
+            <div class="card-body">
+                {{ translated_text }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+{% endif %}
+
+<div class="card shadow-lg border-0 rounded-lg mb-4 mt-5">
+    <div class="card-header bg-primary text-white">
+        <h3 class="text-center m-0"><i class="bi bi-graph-up me-2"></i>Email Analysis Summary</h3>
+    </div>
+    <div class="card-body text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="mb-4">
+                    <h5>Total Emails Analyzed</h5>
+                    <div class="progress mb-2" style="height: 25px;">
+                        <div class="progress-bar bg-blue" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            {{ (fake_count|int) + (real_count|int) }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>Phishing Emails Detected</h5>
+                    <div class="progress mb-2" style="height: 25px;">
+                        <div class="progress-bar bg-red" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            {{ fake_count }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <h5>Legitimate Emails</h5>
+                    <div class="progress mb-2" style="height: 25px;">
+                        <div class="progress-bar bg-green" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            {{ real_count }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %}

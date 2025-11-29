@@ -1,0 +1,188 @@
+{% extends "base.html" %} {% block title %}Contact - PhishGuard{% endblock %} {% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 fw-bold text-blue">Contact Us</h1>
+            <p class="lead text-muted">Have questions or feedback? We're here to help!</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-blue text-white py-2">
+                    <h2 class="h4 mb-0 text-center">Get in Touch</h2>
+                </div>
+                <div class="card-body p-3">
+                    <form class="mt-4">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-chat-left-dots"></i></span>
+                                <input type="text" class="form-control" id="subject" placeholder="Enter subject">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-blue">
+                            <i class="bi bi-send me-2"></i>Send Message
+                        </button>
+                        <div class="alert alert-info mt-3">
+                            <i class="bi bi-info-circle me-2"></i>This form will send your message directly to our support team at <strong>pgs.gayathri2006@gmail.com</strong>. We'll respond to your inquiry as soon as possible.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-blue text-white py-2">
+                    <h2 class="h4 mb-0 text-center">Contact Information</h2>
+                </div>
+                <div class="card-body p-3">
+                    <p class="mb-4">If you have any questions about our email classification system or need assistance, please don't hesitate to contact our team members directly.</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="contact-card p-3" onmouseover="this.classList.add('shadow', 'bg-light')" onmouseout="this.classList.remove('shadow', 'bg-light')">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="contact-avatar me-3 bg-blue text-white rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-person-fill"></i>
+                                    </div>
+                                    <h3 class="h5 mb-0">Gayathri</h3>
+                                </div>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2">
+                                        <i class="bi bi-envelope-fill text-blue me-2"></i>
+                                        <a href="mailto:pgs.gayathri2006@gmail.com" class="text-decoration-none">pgs.gayathri2006@gmail.com</a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="bi bi-telephone-fill text-blue me-2"></i>
+                                        <a href="tel:+918667390735" class="text-decoration-none">+91 8667390735</a>
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-building text-blue me-2"></i>
+                                        <span>Technical Support</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="contact-card p-3" onmouseover="this.classList.add('shadow', 'bg-light')" onmouseout="this.classList.remove('shadow', 'bg-light')">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="contact-avatar me-3 bg-blue text-white rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-person-fill"></i>
+                                    </div>
+                                    <h3 class="h5 mb-0">Divyashree</h3>
+                                </div>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2">
+                                        <i class="bi bi-envelope-fill text-blue me-2"></i>
+                                        <a href="mailto:divya575divya@gmail.com" class="text-decoration-none">divya575divya@gmail.com</a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="bi bi-telephone-fill text-blue me-2"></i>
+                                        <a href="tel:+916385772261" class="text-decoration-none">+91 6385772261</a>
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-building text-blue me-2"></i>
+                                        <span>Customer Support</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-blue text-white py-3">
+                    <h2 class="h3 mb-0">Frequently Asked Questions</h2>
+                </div>
+                <div class="card-body p-4">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item border-0 mb-3 shadow-sm">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    How accurate is the email classification system?
+                                </button>
+                            </h3>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our email classification system achieves over 95% accuracy in identifying phishing emails. The system is continuously trained on new data to improve its performance and adapt to evolving phishing techniques.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 mb-3 shadow-sm">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Is my email data secure when using this system?
+                                </button>
+                            </h3>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we take data security very seriously. All email content submitted to our system is encrypted and processed securely. We do not store the actual content of your emails after processing, only the classification results for your reference.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item border-0 shadow-sm">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    How can I provide feedback on the classification results?
+                                </button>
+                            </h3>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    You can provide feedback on classification results by contacting our support team through the contact form on this page. Your feedback is valuable and helps us improve the system's accuracy.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .contact-card, .hours-card {
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        height: 100%;
+    }
+    .contact-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    .accordion-button:not(.collapsed) {
+        background-color: rgba(13, 110, 253, 0.1);
+        color: #0d6efd;
+    }
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: rgba(13, 110, 253, 0.25);
+    }
+</style>
+{% endblock %}

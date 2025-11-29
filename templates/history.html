@@ -1,0 +1,170 @@
+{% extends "base.html" %} {% block title %}Detection History{% endblock %} {% block content %}
+<div class="container py-4">
+    <h2 class="text-center text-blue mb-4">Your Detection History</h2>
+
+    <ul class="nav nav-tabs mb-4" id="emailTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true" style="color: rgb(0, 77, 128) !important;">
+                <i class="bi bi-list me-2"></i>All Emails
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-danger" id="spam-tab" data-bs-toggle="tab" data-bs-target="#spam" type="button" role="tab" aria-controls="spam" aria-selected="false" style="color: red !important;">
+                <i class="bi bi-exclamation-triangle me-2"></i>Scam Folder
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-success" id="legitimate-tab" data-bs-toggle="tab" data-bs-target="#legitimate" type="button" role="tab" aria-controls="legitimate" aria-selected="false" style="color: green !important;">
+                <i class="bi bi-check-circle me-2"></i>Legitimate Folder
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content" id="emailTabsContent">
+        <!-- All Emails Tab -->
+        <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            {% if detections %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead style="background-color: green;" class="text-white">
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Email Headline</th>
+                            <th>Language</th>
+                            <th>Source</th>
+                            <th>Prediction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in detections %}
+                        <tr>
+                            <td>{{ d.timestamp.strftime('%Y-%m-%d %H:%M:%S') if d.timestamp else '' }}</td>
+                            <td>{{ d.subject }} {% if d.translated_text %}
+                                <button class="btn btn-sm btn-outline-info mt-1" type="button" data-bs-toggle="collapse" data-bs-target="#translation{{ d.id }}" aria-expanded="false">
+                                <i class="bi bi-translate"></i> Show Translation
+                            </button>
+                                <div class="collapse mt-2" id="translation{{ d.id }}">
+                                    <div class="card card-body">
+                                        {{ d.translated_text }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td>{{ d.detected_language|upper if d.detected_language else 'EN' }}</td>
+                            <td>
+                                {% if d.trusted_source %}
+                                <span class="badge bg-success">Trusted</span> {% else %}
+                                <span class="badge bg-secondary">Standard</span> {% endif %}
+                            </td>
+                            <td>
+                                {% if d.prediction == 'Unsafe' %}
+                                <span class="badge bg-red"><i class="bi bi-exclamation-triangle me-1"></i>Scam</span> {% else %}
+                                <span class="badge bg-green"><i class="bi bi-check-circle me-1"></i>Legitimate</span> {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>No detection history yet.
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Spam Folder Tab -->
+        <div class="tab-pane fade" id="spam" role="tabpanel" aria-labelledby="spam-tab">
+            {% set spam_emails = detections|selectattr('prediction', 'equalto', 'Unsafe')|list %} {% if spam_emails %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead style="background-color: red;" class="text-white">
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Email Headline</th>
+                            <th>Language</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in spam_emails %}
+                        <tr>
+                            <td>{{ d.timestamp.strftime('%Y-%m-%d %H:%M:%S') if d.timestamp else '' }}</td>
+                            <td>{{ d.subject }} {% if d.translated_text %}
+                                <button class="btn btn-sm btn-outline-info mt-1" type="button" data-bs-toggle="collapse" data-bs-target="#translation{{ d.id }}_spam" aria-expanded="false">
+                                <i class="bi bi-translate"></i> Show Translation
+                            </button>
+                                <div class="collapse mt-2" id="translation{{ d.id }}_spam">
+                                    <div class="card card-body">
+                                        {{ d.translated_text }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td>{{ d.detected_language|upper if d.detected_language else 'EN' }}</td>
+                            <td>
+                                {% if d.trusted_source %}
+                                <span class="badge bg-success">Trusted</span> {% else %}
+                                <span class="badge bg-secondary">Standard</span> {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>No spam emails detected yet.
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Legitimate Folder Tab -->
+        <div class="tab-pane fade" id="legitimate" role="tabpanel" aria-labelledby="legitimate-tab">
+            {% set legitimate_emails = detections|selectattr('prediction', 'equalto', 'Ham')|list %} {% if legitimate_emails %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead style="background-color: green;" class="text-white">
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Email Headline</th>
+                            <th>Language</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in legitimate_emails %}
+                        <tr>
+                            <td>{{ d.timestamp.strftime('%Y-%m-%d %H:%M:%S') if d.timestamp else '' }}</td>
+                            <td>{{ d.subject }} {% if d.translated_text %}
+                                <button class="btn btn-sm btn-outline-info mt-1" type="button" data-bs-toggle="collapse" data-bs-target="#translation{{ d.id }}_legitimate" aria-expanded="false">
+                                <i class="bi bi-translate"></i> Show Translation
+                            </button>
+                                <div class="collapse mt-2" id="translation{{ d.id }}_legitimate">
+                                    <div class="card card-body">
+                                        {{ d.translated_text }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td>{{ d.detected_language|upper if d.detected_language else 'EN' }}</td>
+                            <td>
+                                {% if d.trusted_source %}
+                                <span class="badge bg-success">Trusted</span> {% else %}
+                                <span class="badge bg-secondary">Standard</span> {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>No legitimate emails detected yet.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS for tab functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+{% endblock %}
